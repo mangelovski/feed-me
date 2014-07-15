@@ -1,0 +1,38 @@
+server:
+    port: 8080
+
+spring:
+    profiles: dev
+    data:
+        mongodb:
+            host: localhost
+            port: 27017
+            databaseName: FeedMe
+    
+
+    thymeleaf:
+        mode: XHTML
+        cache: false
+
+metrics:
+    jmx.enabled: true
+    graphite:
+        enabled: false
+        host: localhost
+        port: 2003
+
+
+
+# You can add as many as folders to watch
+# You just need to add a dash + the directory to watch
+hotReload:
+    enabled: true
+    package:
+      project: com.mangelovski.feedme.demo
+      domain: com.mangelovski.feedme.demo.domain
+      restdto: com.mangelovski.feedme.demo.web.rest.dto
+    liquibase:
+      defaultCatalogName: 
+      defaultSchema: 
+    watchdir:
+      - target/classes

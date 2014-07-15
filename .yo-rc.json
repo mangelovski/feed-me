@@ -1,0 +1,17 @@
+{
+  "generator-jhipster": {
+    "baseName": "FeedMe",
+    "packageName": "com.mangelovski.feedme.demo",
+    "packageFolder": "com/mangelovski/feedme/demo",
+    "authenticationType": "cookie",
+    "hibernateCache": "no",
+    "clusteredHttpSession": "no",
+    "websocket": "no",
+    "databaseType": "nosql",
+    "devDatabaseType": "mongodb",
+    "prodDatabaseType": "mongodb",
+    "useCompass": false,
+    "frontendBuilder": "grunt",
+    "javaVersion": "7"
+  }
+}

@@ -1,0 +1,18 @@
+package com.mangelovski.feedme.demo.config;
+
+import com.mangelovski.feedme.demo.aop.logging.LoggingAspect;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.context.annotation.Profile;
+
+@Configuration
+@EnableAspectJAutoProxy
+public class LoggingAspectConfiguration {
+
+    @Bean
+    @Profile(Constants.SPRING_PROFILE_DEVELOPMENT)
+    public LoggingAspect loggingAspect() {
+        return new LoggingAspect();
+    }
+}
