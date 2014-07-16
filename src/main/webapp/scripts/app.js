@@ -17,114 +17,255 @@ feedmeApp
             $stateProvider
                 .state('main', {
                     url:'/main',
-                    templateUrl: 'views/main.html',
-                    controller: 'MainController',
-                    access: {
-                        authorizedRoles: [USER_ROLES.all]
+                    views: {
+                        "mainView": {
+                            templateUrl: 'views/main.html',
+                            controller: 'MainController',
+                            access: {
+                                authorizedRoles: [USER_ROLES.all]
+                            }
+                        },
+                        "orderView": {
+                            controller: function ($scope) {
+                                $scope.showOrders = false;  //*** Exists! ***//
+                            },
+                            template:"orders"
+                        }
                     }
                 })
                 .state('login', {
                     url: '/login',
-                    templateUrl: 'views/login.html',
-                    controller: 'LoginController',
-                    access: {
-                        authorizedRoles: [USER_ROLES.all]
+                    views: {
+                        "mainView": {
+                            templateUrl: 'views/login.html',
+                            controller: 'LoginController',
+                            access: {
+                                authorizedRoles: [USER_ROLES.all]
+                            }
+                        },
+                        "orderView": {
+                            controller: function ($scope) {
+                                $scope.showOrders = false;  //*** Exists! ***//
+                            },
+                            template:"orders"
+                        }
                     }
+
                 })
                 .state('error', {
                     url: '/error',
-                    templateUrl: 'views/error.html',
-                    access: {
-                        authorizedRoles: [USER_ROLES.all]
+                    views: {
+                        "mainView": {
+                            templateUrl: 'views/error.html',
+                            access: {
+                                authorizedRoles: [USER_ROLES.all]
+                            }
+                        },
+                        "orderView": {
+                            controller: function ($scope) {
+                                $scope.showOrders = false;  //*** Exists! ***//
+                            },
+                            template:"orders"
+                        }
                     }
+
                 })
                 .state('settings', {
                     url: '/settings',
-                    templateUrl: 'views/settings.html',
-                    controller: 'SettingsController',
-                    access: {
-                        authorizedRoles: [USER_ROLES.all]
+                    views: {
+                        "mainView": {
+                            templateUrl: 'views/settings.html',
+                            controller: 'SettingsController',
+                            access: {
+                                authorizedRoles: [USER_ROLES.all]
+                            }
+                        },
+                        "orderView": {
+                            controller: function ($scope) {
+                                $scope.showOrders = false;  //*** Exists! ***//
+                            },
+                            template:"orders"
+                        }
                     }
+
                 })
                 .state('restaurants', {
                     url: '/restaurants',
-                    templateUrl: 'views/restaurants.html',
-                    controller: 'RestaurantsController',
-                    access: {
-                        authorizedRoles: [USER_ROLES.all]
+                    views: {
+                        "mainView": {
+                            templateUrl: 'views/restaurants.html',
+                            controller: 'RestaurantsController',
+                            access: {
+                                authorizedRoles: [USER_ROLES.all]
+                            }
+                        },
+                        "orderView": {
+                            controller: function ($scope) {
+                                $scope.showOrders = false;  //*** Exists! ***//
+                            },
+                            template:"orders"
+                        }
                     }
+
                 }).state('restaurant', {
                     url: '/restaurant',
-                    templateUrl: 'views/restaurant.html',
-                    controller: 'RestaurantController',
-                    access: {
-                        authorizedRoles: [USER_ROLES.all]
+                    views: {
+                        "mainView": {
+                            templateUrl: 'views/menu.html',
+                            controller: 'MenuController',
+                            access: {
+                                authorizedRoles: [USER_ROLES.all]
+                            }
+                        },
+                        "orderView": {
+                            controller: 'OrderController',
+                            templateUrl:"views/order.html"
+                        }
                     }
+
                 })
                 .state('password', {
                     url: '/password',
-                    templateUrl: 'views/password.html',
-                    controller: 'PasswordController',
-                    access: {
-                        authorizedRoles: [USER_ROLES.all]
+                    views: {
+                        "mainView": {
+                            templateUrl: 'views/password.html',
+                            controller: 'PasswordController',
+                            access: {
+                                authorizedRoles: [USER_ROLES.all]
+                            }
+                        },
+                        "orderView": {
+                            controller: function ($scope) {
+                                $scope.showOrders = false;  //*** Exists! ***//
+                            },
+                            template:"orders"
+                        }
                     }
+
                 })
                 .state('sessions', {
                     url: '/sessions',
-                    templateUrl: 'views/sessions.html',
-                    controller: 'SessionsController',
-                    resolve:{
-                        resolvedSessions:['Sessions', function (Sessions) {
-                            return Sessions.get();
-                        }]
-                    },
-                    access: {
-                        authorizedRoles: [USER_ROLES.all]
+                    views: {
+                        "mainView": {
+                            templateUrl: 'views/sessions.html',
+                            controller: 'SessionsController',
+                            resolve:{
+                                resolvedSessions:['Sessions', function (Sessions) {
+                                    return Sessions.get();
+                                }],
+                                access: {
+                                    authorizedRoles: [USER_ROLES.all]
+                                }
+                        },
+                        "orderView": {
+                            controller: function ($scope) {
+                                $scope.showOrders = false;  //*** Exists! ***//
+                            },
+                            template:"orders"
+                        }
                     }
+
+                    }
+
                 })
                 .state('metrics', {
                     url: '/metrics',
-                    templateUrl: 'views/metrics.html',
-                    controller: 'MetricsController',
-                    access: {
-                        authorizedRoles: [USER_ROLES.admin]
+                    views: {
+                        "mainView": {
+                            templateUrl: 'views/metrics.html',
+                            controller: 'MetricsController',
+                            access: {
+                                authorizedRoles: [USER_ROLES.admin]
+                            }
+                        },
+                        "orderView": {
+                            controller: function ($scope) {
+                                $scope.showOrders = false;  //*** Exists! ***//
+                            },
+                            template:"orders"
+                        }
                     }
+
                 })
                 .state('logs', {
                     url: '/logs',
-                    templateUrl: 'views/logs.html',
-                    controller: 'LogsController',
-                    resolve:{
-                        resolvedLogs:['LogsService', function (LogsService) {
-                            return LogsService.findAll();
-                        }]
-                    },
-                    access: {
-                        authorizedRoles: [USER_ROLES.admin]
+                    views: {
+                        "mainView": {
+                            templateUrl: 'views/logs.html',
+                            controller: 'LogsController',
+                            resolve:{
+                                resolvedLogs:['LogsService', function (LogsService) {
+                                    return LogsService.findAll();
+                                }]
+                            },
+                            access: {
+                                authorizedRoles: [USER_ROLES.admin]
+                            }
+                        },
+                        "orderView": {
+                            controller: function ($scope) {
+                                $scope.showOrders = false;  //*** Exists! ***//
+                            },
+                            template:"orders"
+                        }
                     }
+
                 })
                 .state('audits', {
                     url: '/audits',
-                    templateUrl: 'views/audits.html',
-                    controller: 'AuditsController',
-                    access: {
-                        authorizedRoles: [USER_ROLES.admin]
+                    views: {
+                        "mainView": {
+                            templateUrl: 'views/audits.html',
+                            controller: 'AuditsController',
+                            access: {
+                                authorizedRoles: [USER_ROLES.admin]
+                            }
+                        },
+                        "orderView": {
+                            controller: function ($scope) {
+                                $scope.showOrders = false;  //*** Exists! ***//
+                            },
+                            template:"orders"
+                        }
                     }
+
                 })
                 .state('logout', {
                     url: '/logout',
-                    templateUrl: 'views/main.html',
-                    controller: 'LogoutController',
-                    access: {
-                        authorizedRoles: [USER_ROLES.all]
+                    views: {
+                        "mainView": {
+                            templateUrl: 'views/main.html',
+                            controller: 'LogoutController',
+                            access: {
+                                authorizedRoles: [USER_ROLES.all]
+                            }
+                        },
+                        "orderView": {
+                            controller: function ($scope) {
+                                $scope.showOrders = false;  //*** Exists! ***//
+                            },
+                            template:"orders"
+                        }
                     }
+
                 })
                 .state('docs', {
                     url: '/docs',
-                    templateUrl: 'views/docs.html',
-                    access: {
-                        authorizedRoles: [USER_ROLES.admin]
+                    views: {
+                        "mainView": {
+                            templateUrl: 'views/docs.html',
+                            access: {
+                                authorizedRoles: [USER_ROLES.admin]
+                            }
+                        },
+                        "orderView": {
+                            controller: function ($scope) {
+                                $scope.showOrders = false;  //*** Exists! ***//
+                            },
+                            template:"orders"
+                        }
                     }
+
                 });
 
             // Initialize angular-translate
@@ -137,7 +278,7 @@ feedmeApp
 
             $translateProvider.useCookieStorage();
 
-            tmhDynamicLocaleProvider.localeLocationPattern('bower_components/angular-i18n/angular-locale_{{locale}}.js')
+            tmhDynamicLocaleProvider.localeLocationPattern('bower_components/angular-i18n/angular-locale_{{locale}}.js');
             tmhDynamicLocaleProvider.useCookieStorage('NG_TRANSLATE_LANG_KEY');
             
         }])
@@ -150,7 +291,7 @@ feedmeApp
                 });
 
                 // Call when the the client is confirmed
-                $rootScope.$on('event:auth-loginConfirmed', function(data) {
+                $rootScope.$on('event:auth-loginConfirmed', function() {
                     $rootScope.authenticated = true;
                     if ($state.includes('login')) {
                         $state.go('main');
@@ -158,14 +299,14 @@ feedmeApp
                 });
 
                 // Call when the 401 response is returned by the server
-                $rootScope.$on('event:auth-loginRequired', function(rejection) {
+                $rootScope.$on('event:auth-loginRequired', function() {
                     Session.invalidate();
                     $rootScope.authenticated = false;
                     $state.go('login');
                 });
 
                 // Call when the 403 response is returned by the server
-                $rootScope.$on('event:auth-notAuthorized', function(rejection) {
+                $rootScope.$on('event:auth-notAuthorized', function() {
                     $rootScope.errorMessage = 'errors.403';
                     $state.go('error');
                 });

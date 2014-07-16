@@ -2,8 +2,8 @@
  * Created by Martin on 6/21/2014.
  */
 'use strict';
-feedmeApp.factory('RestaurantsService', ['$resource', '$http', '$q', '$filter',
-    function ($resource, $http, $q, $filter) {
+feedmeApp.factory('RestaurantsService', ['$resource', '$http',
+    function ($resource, $http) {
         var RestaurantsService = {};
         var currentRestourants = {'Restourants': [
             {
@@ -66,7 +66,7 @@ feedmeApp.factory('RestaurantsService', ['$resource', '$http', '$q', '$filter',
             }
         ]};
 
-        RestaurantsService.loadAllRestourants = function () {
+        RestaurantsService.loadAllRestaurants = function () {
             /*var link = UtilFactory.findLink('visits', currentPatient.links);
              var deferred = $q.defer();
              if (link !== undefined) {
@@ -89,9 +89,20 @@ feedmeApp.factory('RestaurantsService', ['$resource', '$http', '$q', '$filter',
             return currentRestourants;
         };
         return {
-            loadAllRestourants: function () {
+            loadAllRestaurants: function () {
                 var promise = $http.get('app/rest/account').then(function () {
                     return currentRestourants;
+                });
+                return promise;
+            },
+            loadRestaurantById: function (id) {
+                var promise = $http.get('app/rest/account').then(function () {
+                    for(var i = 0; i<currentRestourants.Restourants.length;i++){
+                        if(currentRestourants.Restourants[i].id==id){
+                            return currentRestourants.Restourants[i];
+                        }
+                    }
+                    return null;
                 });
                 return promise;
             },

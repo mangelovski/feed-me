@@ -296,23 +296,33 @@
             }
         }
     },
-    "restaurant": {
+    "menu": {
         "filter": {
-            "name": "Filter the restaurants:",
-            "area":"Select a region",
-            "type":"Select a restaurant type",
-            "byName": "Start Typing a name",
+            "name": "Filter the menu:",
+            "category":"Select a category",
+            "byName": "Start Typing a dish name or description",
             "noFilter": "remove filtering"
         },
-        "title": "Restaurant",
+        "title": "Restaurant menu",
         "table": {
             "header": {
                 "name": "name",
-                "area": "area",
-                "type": "type",
-                "popularity": "popularity",
+                "category": "category",
+                "price": "price",
+                "quantity": "quantity",
                 "shortDesc": "Short Description",
-                "comments": "Our comments"
+                "order": "order"
+            }
+        }
+    },
+    "order": {
+        "title": "Your order",
+        "table": {
+            "header": {
+                "name": "name",
+                "price": "price",
+                "quantity": "quantity",
+                "comments": "comments"
             }
         }
     }

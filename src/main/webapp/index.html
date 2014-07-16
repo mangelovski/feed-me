@@ -17,7 +17,7 @@
         <link rel="stylesheet" href="bower_components/select2/select2.css">
         <!-- endbuild -->
     </head>
-    <body ng-app="feedmeApp" ng-controller="MainController">
+    <body data-ng-app="feedmeApp" data-ng-controller="MainController">
         <!--[if lt IE 10]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
@@ -37,7 +37,7 @@
                     <ul class="nav navbar-nav nav-pills navbar-right">
                         <li>
                             <a href="#/restaurants">
-                                <span class="glyphicon glyphicon-home"></span>
+                                <span class="glyphicon glyphicon-glass"></span>
                                 <span translate="global.menu.restaurants">Home</span>
                             </a>
                         </li>
@@ -115,13 +115,13 @@
             </div>
         </nav>
         <div class="container">
-            <div class="well" data-ui-view></div>
+            <div class="well" ng-class="{'col-md-8': orderView}" data-ui-view="mainView"></div>
+            <div class="well col-md-4" data-ui-view="orderView" ng-show="showOrders"></div>
             <div class="development"></div>
-            <div class="footer">
-                <p translate="footer">Built for hungry people @mangelovski</p>
-            </div>
         </div>
-
+        <div class="container footer">
+            <p translate="footer">Built for hungry people @mangelovski</p>
+        </div>
         <!-- Google Analytics: uncomment and change UA-XXXXX-X to be your site's ID.
         <script>
             (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
@@ -165,7 +165,9 @@
         <script src="scripts/controllers/logsController.js"></script>
         <script src="scripts/controllers/auditsController.js"></script>
         <script src="scripts/controllers/restaurantsController.js"></script>
-        <script src="scripts/controllers/restaurantController.js"></script>
+        <script src="scripts/controllers/menuController.js"></script>
+        <script src="scripts/controllers/orderController.js"></script>
+
 
 
 
@@ -179,9 +181,12 @@
         <script src="scripts/factories/auditsService.js"></script>
         <script src="scripts/factories/sessionService.js"></script>
         <script src="scripts/factories/restaurantsService.js"></script>
-        <script src="scripts/factories/restaurantService.js"></script>
+        <script src="scripts/factories/menuService.js"></script>
         <script src="scripts/factories/authenticationSharedService.js"></script>
         <script src="scripts/factories/stateService.js"></script>
+        <script src="scripts/factories/orderService.js"></script>
+        <script src="scripts/factories/userService.js"></script>
+
 
         <script src="scripts/directives/passwordStrengthBar.js"></script>
         <script src="scripts/directives/activeLink.js"></script>

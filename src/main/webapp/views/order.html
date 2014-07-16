@@ -1,0 +1,21 @@
+<div>
+    <span class="glyphicon glyphicon-shopping-cart"></span>
+    <h2 translate="order.title"></h2>
+    <table class="table table-condensed table-striped table-bordered table-responsive">
+        <thead>
+        <tr>
+            <th ng-click="predicate = 'name'; reverse=!reverse">{{'order.table.header.name' | translate}}</th>
+            <th ng-click="predicate = 'price'; reverse=!reverse">{{'order.table.header.price' | translate}}</th>
+            <th>{{'order.table.header.quantity' | translate}}</th>
+            <th>{{'menu.table.header.comments' | translate}}</th>
+        </tr>
+        </thead>
+
+        <tr ng-repeat="item in order.itemsOrdered">
+            <td><span>{{item.name}}</span></td>
+            <td>{{item.price}}</td>
+            <td><input type="text" class="input-sm form-control" ng-model="item.quantity" placeholder="{{item.quantity}}"></td>
+            <td><input type="text" class="input-sm form-control" ng-model="item.comments" placeholder="{{item.comments}}"></td>
+        </tr>
+    </table>
+</div>

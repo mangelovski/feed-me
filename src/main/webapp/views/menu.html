@@ -1,0 +1,42 @@
+<div>
+    <h2>{{restaurant.name}}</h2>
+    <h3 translate="menu.title">Restaurant menu</h3>
+    <div class="row">
+        <div class="col-md-5">
+            <h4 translate="menu.filter.name">Filter the restaurants</h4>
+            <p class="input-group">
+                <input type="text" class="input-sm form-control" ng-model="filterName.item.$" placeholder="{{'menu.filter.byName' | translate}}">
+                <br/>
+                {{'menu.filter.category' | translate}}:
+                <select ui-select2 ng-model="filterName.category.name" data-placeholder="{{'menu.table.header.category' | translate}}">
+                    <option value=""> </option>
+                    <option value="">{{'menu.filter.noFilter' | translate}}</option>
+                    <option ng-repeat="category in categories" value="{{category}}">{{category}}</option>
+                </select>
+            </p>
+        </div>
+    </div>
+
+    <div ng-repeat="category in menu.availableCategories| filter:filterName.category">
+        <h2>{{category.name}}</h2>
+    <table class="table table-condensed table-striped table-bordered table-responsive">
+        <thead>
+        <tr>
+            <th ng-click="predicate = 'name'; reverse=!reverse">{{'menu.table.header.name' | translate}}</th>
+            <th ng-click="predicate = 'desc'; reverse=!reverse">{{'menu.table.header.shortDesc' | translate}}</th>
+            <th ng-click="predicate = 'price'; reverse=!reverse">{{'menu.table.header.price' | translate}}</th>
+            <th>{{'menu.table.header.quantity' | translate}}</th>
+            <th>{{'menu.table.header.order' | translate}}</th>
+        </tr>
+        </thead>
+
+        <tr ng-repeat="item in category.availableItems| filter:filterName.item | orderBy:predicate:reverse">
+            <td><span>{{item.name}}</span></td>
+            <td>{{item.desc}}</td>
+            <td>{{item.price}}</td>
+            <td><input type="text" class="input-sm form-control" ng-model="item.quantity" placeholder="{{item.defaultValue}}"></td>
+            <td class="glyphicon glyphicon-plus-sign" ng-click="addToCart(item);">Add To Cart</td>
+        </tr>
+    </table>
+    </div>
+</div>

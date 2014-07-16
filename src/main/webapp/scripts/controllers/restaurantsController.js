@@ -16,7 +16,7 @@ feedmeApp.controller('RestaurantsController', ['$scope', '$translate', '$filter'
             $state.go('restaurant');
         };
 
-        RestaurantsService.loadAllRestourants().then(function(data){
+        RestaurantsService.loadAllRestaurants().then(function(data){
             $scope.restourants = data.Restourants;
             $scope.areas=[];
             $scope.types=[];
@@ -32,7 +32,7 @@ feedmeApp.controller('RestaurantsController', ['$scope', '$translate', '$filter'
                 if(!flag){
                     $scope.areas.push(area)
                 }
-                var flag=false;
+                flag=false;
                 var type=$scope.restourants[i].type;
                 for(var j = 0; j <  $scope.types.length; ++j) {
 
