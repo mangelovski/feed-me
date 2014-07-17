@@ -24,7 +24,7 @@ feedmeApp.controller('MenuController', ['$scope','MenuService',
         };
 
         StateService.getSelectedRestaurant().then(function(data){
-            $scope.selectedId=parseInt(data);
+            $scope.selectedId=data;
             RestaurantsService.loadRestaurantById($scope.selectedId).then(function(data){
                 $scope.restaurant=data;
             });

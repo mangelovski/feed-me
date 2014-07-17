@@ -39,10 +39,19 @@ public class User implements Serializable {
     @Size(min = 0, max = 100)
     private String email;
 
+    @Field("userId")
+    private String userId;
+
     @JsonIgnore
     private Set<Authority> authorities;
 
-    
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 
     public String getLogin() {
         return login;
@@ -124,6 +133,7 @@ public class User implements Serializable {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
+                ", userId='" + userId + '\'' +
                 "}";
     }
 }

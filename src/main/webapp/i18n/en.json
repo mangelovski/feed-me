@@ -317,12 +317,14 @@
     },
     "order": {
         "title": "Your order",
+        "button":"Order!",
         "table": {
             "header": {
                 "name": "name",
                 "price": "price",
                 "quantity": "quantity",
-                "comments": "comments"
+                "comments": "comments",
+                "remove": "remove"
             }
         }
     }

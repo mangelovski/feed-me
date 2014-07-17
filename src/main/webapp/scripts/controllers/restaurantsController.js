@@ -12,12 +12,12 @@ feedmeApp.controller('RestaurantsController', ['$scope', '$translate', '$filter'
        };
         $scope.setRestaurant = function() {
             $scope.selected = this.restaurant;
-            StateService.setSelectedRestaurant($scope.selected.id);
+            StateService.setSelectedRestaurant($scope.selected.restaurantId);
             $state.go('restaurant');
         };
 
         RestaurantsService.loadAllRestaurants().then(function(data){
-            $scope.restourants = data.Restourants;
+            $scope.restourants = data;
             $scope.areas=[];
             $scope.types=[];
             for (var i = 0; i < $scope.restourants.length; ++i) {

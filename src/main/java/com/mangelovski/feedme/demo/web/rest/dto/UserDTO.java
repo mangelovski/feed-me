@@ -12,17 +12,20 @@ public class UserDTO {
     
     private String email;
 
+    private String userId;
+
     private List<String> roles;
 
     public UserDTO() {
     }
 
-    public UserDTO(String login, String firstName, String lastName, String email, List<String> roles) {
+    public UserDTO(String login, String firstName, String lastName, String email,String userId, List<String> roles) {
         this.login = login;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.roles = roles;
+        this.userId=userId;
     }
 
     public String getLogin() {
@@ -41,6 +44,11 @@ public class UserDTO {
         return email;
     }
 
+    public String getUserId() {
+        return userId;
+    }
+
+
     public List<String> getRoles() {
         return roles;
     }
@@ -52,6 +60,7 @@ public class UserDTO {
         sb.append(", firstName='").append(firstName).append('\'');
         sb.append(", lastName='").append(lastName).append('\'');
         sb.append(", email='").append(email).append('\'');
+        sb.append(", userId='").append(userId).append('\'');
         sb.append(", roles=").append(roles);
         sb.append('}');
         return sb.toString();

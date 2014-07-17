@@ -10,7 +10,7 @@
 
     angular.module('http-auth-interceptor', ['http-auth-interceptor-buffer'])
 
-        .factory('authService', ['$rootScope','httpBuffer', function($rootScope, httpBuffer) {
+        .factory('authService', ['$rootScope','httpBuffer','UserService', function($rootScope, httpBuffer,UserService) {
             return {
                 /**
                  * Call this function to indicate that authentication was successfull and trigger a
@@ -19,6 +19,7 @@
                  * example if you need to pass through details of the user that was logged in
                  */
                 loginConfirmed: function(data, configUpdater) {
+                    UserService.setCurrentUser(data.userId);
                     var updater = configUpdater || function(config) {return config;};
                     $rootScope.$broadcast('event:auth-loginConfirmed', data);
                     httpBuffer.retryAll(updater);

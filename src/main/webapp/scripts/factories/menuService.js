@@ -6,7 +6,7 @@ feedmeApp.factory('MenuService', ['$resource', '$http',
     function ($resource, $http) {
         var allMenus = {'Menies': [
             {
-                RestaurantId:1,
+                RestaurantId:"53c7982218f88924674bc8e4",
                 menuId: 1,
                 availableCategories: [
                     {
@@ -17,14 +17,14 @@ feedmeApp.factory('MenuService', ['$resource', '$http',
                                 name: "Topeno Sirenje",
                                 price: 150,
                                 desc: "home made cheese, baked in oven",
-                                defaultValue:1
+                                quantity:1
                             },
                             {
                                 itemId: 2,
                                 name: "Bieno sirenje na skara",
                                 price: 200,
                                 desc: "baked cheese",
-                                defaultValue:1
+                                quantity:1
 
                             },
                             {
@@ -32,14 +32,14 @@ feedmeApp.factory('MenuService', ['$resource', '$http',
                                 name: "Pecurki na skara",
                                 price: 200,
                                 desc: "mushrooms on grill",
-                                defaultValue:1
+                                quantity:1
                             },
                             {
                                 itemId: 4,
                                 name: "Pileski prsti",
                                 price: 250,
                                 desc: "chicken nuggets",
-                                defaultValue:1
+                                quantity:1
                             }
                         ]
                     },
@@ -51,27 +51,28 @@ feedmeApp.factory('MenuService', ['$resource', '$http',
                                 name: "Egejska",
                                 price: 150,
                                 desc: "asd",
-                                defaultValue:1
+                                quantity:1
                             },
                             {
                                 itemId: 6,
                                 name: "Shopska",
                                 price: 200,
-                                desc: "fgh"
+                                desc: "fgh",
+                                quantity:1
                             },
                             {
                                 itemId: 7,
                                 name: "Makedonska",
                                 price: 100,
                                 desc: "jkl",
-                                defaultValue:1
+                                quantity:1
                             },
                             {
                                 itemId: 8,
                                 name: "Cezar",
                                 price: 250,
                                 desc: "asdf",
-                                defaultValue:1
+                                quantity:1
                             }
                         ]
                     },
@@ -83,49 +84,49 @@ feedmeApp.factory('MenuService', ['$resource', '$http',
                                 name: "Kebapce",
                                 price: 15,
                                 desc: "asd",
-                                defaultValue:1
+                                quantity:1
                             },
                             {
                                 itemId: 10,
                                 name: "Pleskavica",
                                 price: 150,
                                 desc: "fgh",
-                                defaultValue:1
+                                quantity:1
                             },
                             {
                                 itemId: 11,
                                 name: "Sharska Pleskavica",
                                 price: 200,
                                 desc: "jkl",
-                                defaultValue:1
+                                quantity:1
                             },
                             {
                                 itemId: 12,
                                 name: "Uvijac",
                                 price: 180,
                                 desc: "asdf",
-                                defaultValue:1
+                                quantity:1
                             },
                             {
                                 itemId: 13,
                                 name: "Rebro",
                                 price: 200,
                                 desc: "asdf",
-                                defaultValue:1
+                                quantity:1
                             },
                             {
                                 itemId: 14,
                                 name: "Becka Snicla",
                                 price: 230,
                                 desc: "asdf",
-                                defaultValue:1
+                                quantity:1
                             },
                             {
                                 itemId: 15,
                                 name: "Domacha kobasica",
                                 price: 140,
                                 desc: "asdf",
-                                defaultValue:1
+                                quantity:1
                             }
                         ]
                     },
@@ -137,49 +138,49 @@ feedmeApp.factory('MenuService', ['$resource', '$http',
                                 name: "Sladoled topce",
                                 price: 15,
                                 desc: "asd",
-                                defaultValue:1
+                                quantity:1
                             },
                             {
                                 itemId: 17,
                                 name: "Saher Torta",
                                 price: 150,
                                 desc: "fgh",
-                                defaultValue:1
+                                quantity:1
                             },
                             {
                                 itemId: 18,
                                 name: "Toplo-Ladno",
                                 price: 200,
                                 desc: "jkl",
-                                defaultValue:1
+                                quantity:1
                             },
                             {
                                 itemId: 19,
                                 name: "Baklava",
                                 price: 180,
                                 desc: "asdf",
-                                defaultValue:1
+                                quantity:1
                             },
                             {
                                 itemId: 20,
                                 name: "Bogata palacinka",
                                 price: 200,
                                 desc: "asdf",
-                                defaultValue:1
+                                quantity:1
                             },
                             {
                                 itemId: 21,
                                 name: "CheeseCake",
                                 price: 230,
                                 desc: "asdf",
-                                defaultValue:1
+                                quantity:1
                             },
                             {
                                 itemId: 22,
                                 name: "Slatko od smokvi",
                                 price: 140,
                                 desc: "asdf",
-                                defaultValue:1
+                                quantity:1
                             }
                         ]
                     }

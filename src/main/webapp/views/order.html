@@ -7,7 +7,8 @@
             <th ng-click="predicate = 'name'; reverse=!reverse">{{'order.table.header.name' | translate}}</th>
             <th ng-click="predicate = 'price'; reverse=!reverse">{{'order.table.header.price' | translate}}</th>
             <th>{{'order.table.header.quantity' | translate}}</th>
-            <th>{{'menu.table.header.comments' | translate}}</th>
+            <th>{{'order.table.header.comments' | translate}}</th>
+            <th>{{'order.table.header.remove' | translate}}</th>
         </tr>
         </thead>
 
@@ -16,6 +17,8 @@
             <td>{{item.price}}</td>
             <td><input type="text" class="input-sm form-control" ng-model="item.quantity" placeholder="{{item.quantity}}"></td>
             <td><input type="text" class="input-sm form-control" ng-model="item.comments" placeholder="{{item.comments}}"></td>
+            <td class="glyphicon glyphicon-minus" ng-click="removeOne(item);"></td>
         </tr>
     </table>
+    <button type="submit" class="btn btn-primary" translate="order.button" ng-click="createOrder();">Order!</button>
 </div>

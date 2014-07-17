@@ -9,7 +9,7 @@ feedmeApp.factory('OrderService', ['$resource', '$http',
             {
                 OrderId:1,
                 UserId: 1,
-                RestaurantId:1,
+                RestaurantId:"53c7982218f88924674bc8e4",
                 itemsOrdered: [
 
                             {
@@ -84,7 +84,8 @@ feedmeApp.factory('OrderService', ['$resource', '$http',
                         OrderId: nextId,
                         UserId: userId,
                         RestaurantId: restaurantId,
-                        itemsOrdered: []
+                        itemsOrdered: [],
+                        orderStatus:"makingCart"
                     };
                         nextId++;
                         allOrders.Orders.push(NewOrder);
@@ -93,19 +94,20 @@ feedmeApp.factory('OrderService', ['$resource', '$http',
                 return promise;
             },
             addItemToOrder: function (orderId,itemId,itemName,itemPrice,comments,quantity) {
-                var promise = $http.get('app/rest/account').then(function () {
-                    for(var i =0; i<allOrders.Orders.length;i++){
-                        if(allOrders.Orders[i].OrderId==orderId) {
-                            var containsItem = false;
-                            for (var j = 0; j < allOrders.Orders[i].itemsOrdered.length; j++) {
-                                if (allOrders.Orders[i].itemsOrdered[j].itemId == itemId) {
-                                    allOrders.Orders[i].itemsOrdered[j].quantity += quantity;
-                                    if (comments != "")
-                                        allOrders.Orders[i].itemsOrdered[j].comments = comments;
-                                    containsItem = true;
-                                }
+            var promise = $http.get('app/rest/account').then(function () {
+                for(var i =0; i<allOrders.Orders.length;i++){
+                    if(allOrders.Orders[i].OrderId==orderId) {
+                        var containsItem = false;
+                        for (var j = 0; j < allOrders.Orders[i].itemsOrdered.length; j++) {
+                            if (allOrders.Orders[i].itemsOrdered[j].itemId == itemId) {
+                                allOrders.Orders[i].itemsOrdered[j].quantity =
+                                    parseInt(allOrders.Orders[i].itemsOrdered[j].quantity)+parseInt(quantity);
+                                if (comments != "")
+                                    allOrders.Orders[i].itemsOrdered[j].comments = comments;
+                                containsItem = true;
                             }
-                            if (!containsItem) {
+                        }
+                        if (!containsItem) {
 
                             var newItem = {
                                 itemId: itemId,
@@ -115,13 +117,35 @@ feedmeApp.factory('OrderService', ['$resource', '$http',
                                 comments: comments
                             };
                             allOrders.Orders[i].itemsOrdered.push(newItem);
-                             }
-                            return true;
+                        }
+                        return true;
+                    }
+                }
+                return false;
+            });
+            return promise;
+        },
+            removeItemFromOrder: function (orderId,itemId) {
+                var promise = $http.get('app/rest/account').then(function () {
+                    for(var i =0; i<allOrders.Orders.length;i++){
+                        if(allOrders.Orders[i].OrderId==orderId) {
+                            for (var j = 0; j < allOrders.Orders[i].itemsOrdered.length; j++) {
+                                if (allOrders.Orders[i].itemsOrdered[j].itemId == itemId) {
+                                    allOrders.Orders[i].itemsOrdered[j].quantity =
+                                        parseInt(allOrders.Orders[i].itemsOrdered[j].quantity)-1;
+                                    if(allOrders.Orders[i].itemsOrdered[j].quantity==0){
+                                        allOrders.Orders[i].itemsOrdered.splice(j,1);
+                                    }
+                                    return true;
+                                }
+                            }
+
                         }
                     }
                     return false;
                 });
                 return promise;
             }
-        }
+
+    }
     }]);
