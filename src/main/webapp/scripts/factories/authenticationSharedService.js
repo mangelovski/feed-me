@@ -3,8 +3,8 @@
  */
 
 'use strict';
-feedmeApp.factory('AuthenticationSharedService', ['$rootScope', '$http', 'authService', 'Session', 'AccountService',
-    function ($rootScope, $http, authService, Session, Account) {
+feedmeApp.factory('AuthenticationSharedService', ['$rootScope', '$http', 'authService', 'Session', 'AccountService','UserService',
+    function ($rootScope, $http, authService, Session, Account,UserService) {
         return {
             login: function (param) {
                 var data ="j_username=" + param.username +"&j_password=" + param.password +"&_spring_security_remember_me=" + param.rememberMe +"&submit=Login";
@@ -15,6 +15,7 @@ feedmeApp.factory('AuthenticationSharedService', ['$rootScope', '$http', 'authSe
                     ignoreAuthModule: 'ignoreAuthModule'
                 }).success(function (data, status, headers, config) {
                     Account.get(function(data) {
+                        UserService.setCurrentUser(data.login);
                         Session.create(data.login, data.firstName, data.lastName, data.email, data.roles);
                         $rootScope.account = Session;
                         authService.loginConfirmed(data);
@@ -73,7 +74,7 @@ feedmeApp.factory('AuthenticationSharedService', ['$rootScope', '$http', 'authSe
                 $rootScope.authenticationError = false;
                 $rootScope.authenticated = false;
                 $rootScope.account = null;
-
+                UserService.setCurrentUser("");
                 $http.get('app/logout');
                 Session.invalidate();
                 authService.loginCancelled();

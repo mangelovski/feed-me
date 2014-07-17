@@ -7,21 +7,13 @@ feedmeApp.factory('RestaurantsService', ['$resource', '$http',
         return {
             loadAllRestaurants: function () {
                 var promise = $http.get('app/rest/allRestaurants').then(function (response) {
-                    debugger;
                     return response.data;
                 });
                 return promise;
             },
             loadRestaurantById: function (id) {
                 var promise = $http.get('app/rest/restaurant', {params: {restaurantId: id}}).then(function (response) {
-                    debugger;
                     return response.data;
-                    for(var i = 0; i<currentRestourants.Restourants.length;i++){
-                        if(currentRestourants.Restourants[i].id==id){
-                            return currentRestourants.Restourants[i];
-                        }
-                    }
-                    return null;
                 });
                 return promise;
             },
@@ -38,9 +30,4 @@ feedmeApp.factory('RestaurantsService', ['$resource', '$http',
                 return promise;
             }
         }
-
-        /* return $resource('app/rest/logs', {}, {
-         'findAll': { method: 'GET', isArray: true},
-         'changeLevel':  { method: 'PUT'}
-         });*/
     }]);

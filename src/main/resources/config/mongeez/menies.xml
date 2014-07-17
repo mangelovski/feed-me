@@ -1,0 +1,228 @@
+<mongoChangeLog>
+    <changeSet changeId="ChangeSet-4" author="martin">
+        <script>
+
+            db.T_MENIES.insert(
+            {
+            "restaurantId": "53c7982218f88924674bc8e4",
+            "_id": "1",
+            "availableCategories":[
+            {
+            "name": "Starters",
+            "availableItems": [
+            {
+            "_id": "1",
+            "name": "Topeno Sirenje",
+            "price": "150",
+            "desc": "home made cheese, baked in oven",
+            "quantity":"1"
+            },
+            {
+            "_id": "2",
+            "name": "Bieno sirenje na skara",
+            "price": 200,
+            "desc": "baked cheese",
+            "quantity":1
+
+            },
+            {
+            "_id": "3",
+            "name": "Pecurki na skara",
+            "price": 200,
+            "desc": "mushrooms on grill",
+            "quantity":1
+            },
+            {
+            "_id": "4",
+            "name": "Pileski prsti",
+            "price": 250,
+            "desc": "chicken nuggets",
+            "quantity":1
+            }]},
+            {
+            "name": "Salads",
+           "availableItems": [
+            {
+            "_id": "5",
+            "name": "Egejska",
+            "price": 150,
+            "desc": "asd",
+            "quantity":1
+            },
+            {
+            "_id": "6",
+            "name": "Shopska",
+            "price": "200",
+            "desc": "fgh",
+            "quantity":"1"
+            },
+            {
+            "_id": "7",
+            "name": "Makedonska",
+            "price": 100,
+            "desc": "jkl",
+            "quantity":1
+            },
+            {
+            "_id": "8",
+            "name": "Cezar",
+            "price": "250",
+            "desc": "asdf",
+            "quantity":"1"
+            }
+            ]
+            },
+            {
+            "name": "Grill",
+           "availableItems": [
+            {
+            "_id": "9",
+            "name": "Kebapce",
+            "price": "15",
+            "desc": "asd",
+            "quantity":"1"
+            },
+            {
+            "_id": "10",
+            "name": "Pleskavica",
+            "price": "150",
+            "desc": "fgh",
+            "quantity":"1"
+            },
+            {
+            "_id": "11",
+            "name": "Sharska Pleskavica",
+            "price": "200",
+            "desc": "jkl",
+            "quantity":"1"
+            },
+            {
+            "_id":"12",
+            "name": "Uvijac",
+            "price": "180",
+            "desc": "asdf",
+            "quantity":"1"
+            },
+            {
+            "_id": "13",
+            "name": "Rebro",
+            "price": "200",
+            "desc": "asdf",
+            "quantity":"1"
+            },
+            {
+            "_id": "14",
+            "name": "Becka Snicla",
+            "price": "230",
+            "desc": "asdf",
+            "quantity":"1"
+            },
+            {
+            "_id": "15",
+            "name": "Domacha kobasica",
+            "price": "140",
+            "desc": "asdf",
+            "quantity":"1"
+            }
+            ]
+            },
+            {
+            "name": "Desserts",
+           "availableItems": [
+            {
+            "_id": "16",
+            "name": "Sladoled topce",
+            "price": "15",
+            "desc": "asd",
+            "quantity":"1"
+            },
+            {
+            "_id": "17",
+            "name": "Saher Torta",
+            "price": "150",
+            "desc": "fgh",
+            "quantity":"1"
+            },
+            {
+            "_id": "18",
+            "name": "Toplo-Ladno",
+            "price": "200",
+            "desc": "jkl",
+            "quantity":"1"
+            },
+            {
+            "_id": "19",
+            "name": "Baklava",
+            "price": "180",
+            "desc": "asdf",
+            "quantity":"1"
+            },
+            {
+            "_id": "20",
+            "name": "Bogata palacinka",
+            "price": "200",
+            "desc": "asdf",
+            "quantity":"1"
+            },
+            {
+            "_id": "21",
+            "name": "CheeseCake",
+            "price": "230",
+            "desc": "asdf",
+            "quantity":"1"
+            },
+            {
+            "_id": "22",
+            "name": "Slatko od smokvi",
+            "price": "140",
+            "desc": "asdf",
+            "quantity":"1"
+            }
+            ]
+            }]});
+            db.T_MENIES.insert(
+            {
+           "restaurantId":"2",
+          "_id": "2",
+            "availableCategories": [],
+         "name": "Veneto"
+            });
+            db.T_MENIES.insert({
+            "restaurantId":"3",
+            "_id": "3",
+            "name": "Enriko",
+            "availableCategories": []
+            });
+            db.T_MENIES.insert({
+            "restaurantId":"4",
+            "_id": "4",
+            "name": "Gala Kujna1",
+            "availableCategories": []
+            });
+            db.T_MENIES.insert({
+            "restaurantId":"5",
+            "_id": "5",
+            "name": "Celik",
+            "availableCategories": []
+            });
+            db.T_MENIES.insert({
+            "restaurantId":"6",
+            "_id": "6",
+            "name": "1001 night",
+            "availableCategories": []
+            });
+            db.T_MENIES.insert({
+            "restaurantId":"7",
+            "_id": "7",
+            "name": "4 seasons",
+            "availableCategories": []
+            });
+            db.T_MENIES.insert({
+            "restaurantId":"8",
+            "_id": "8",
+            "name": "Kostarika",
+            "availableCategories": []
+            });
+        </script>
+    </changeSet>
+</mongoChangeLog>

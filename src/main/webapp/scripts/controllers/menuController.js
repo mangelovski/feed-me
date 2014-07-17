@@ -17,7 +17,7 @@ feedmeApp.controller('MenuController', ['$scope','MenuService',
                 quantity=item.defaultValue;
             }
 
-           OrderService.addItemToOrder($scope.order.OrderId,item.itemId,item.name,item.price,"",quantity).then(function(data){
+           OrderService.addItemToOrder($scope.order.orderId,item.itemId,item.name,item.price,"",quantity).then(function(data){
            console.log(data);
            });
 
@@ -29,7 +29,7 @@ feedmeApp.controller('MenuController', ['$scope','MenuService',
                 $scope.restaurant=data;
             });
             UserService.getCurrentUser().then(function(data){
-                OrderService.loadLastUncompletedOrderOrMakeNew(parseInt(data),$scope.selectedId).then(function(data){
+                OrderService.loadLastUncompletedOrderOrMakeNew(data,$scope.selectedId).then(function(data){
                     $scope.order=data;
                 });
             });

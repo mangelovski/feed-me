@@ -7,30 +7,30 @@ feedmeApp.factory('OrderService', ['$resource', '$http',
         var nextId=2;
         var allOrders = {'Orders': [
             {
-                OrderId:1,
-                UserId: 1,
-                RestaurantId:"53c7982218f88924674bc8e4",
+                orderId:1,
+                userId: "1",
+                restaurantId:"1",
                 itemsOrdered: [
 
                             {
-                                itemId: 1,
+                                itemId: "1",
                                 name: "Topeno Sirenje",
-                                price: 150,
-                                quantity:3,
+                                price: "150",
+                                quantity:"3",
                                 comments:""
                             },
                             {
-                                itemId: 4,
+                                itemId: "4",
                                 name: "Pileski prsti",
-                                price: 250,
-                                quantity:1,
+                                price: "250",
+                                quantity:"1",
                                 comments:""
                             },
                     {
-                        itemId: 6,
+                        itemId: "6",
                         name: "Shopska",
-                        price: 200,
-                        quantity:2,
+                        price: "200",
+                        quantity:"2",
                         comments:"no onions"
                     },
                     {
@@ -63,7 +63,7 @@ feedmeApp.factory('OrderService', ['$resource', '$http',
             loadOrderById: function (orderId) {
                 var promise = $http.get('app/rest/account').then(function () {
                     for(var i =0; i<allOrders.Orders.length;i++){
-                        if(allOrders.Orders[i].OrderId==orderId){
+                        if(allOrders.Orders[i].orderId==orderId){
                             return allOrders.Orders[i];
                         }
                     }
@@ -73,22 +73,24 @@ feedmeApp.factory('OrderService', ['$resource', '$http',
             },
             loadLastUncompletedOrderOrMakeNew: function (userId,restaurantId) {
                 var promise = $http.get('app/rest/account').then(function () {
+
                     for(var i =0; i<allOrders.Orders.length;i++){
-                        if(allOrders.Orders[i].UserId==userId
+                        if(allOrders.Orders[i].userId===userId
                             &&allOrders.Orders[i].orderStatus==="makingCart"
-                            &&allOrders.Orders[i].RestaurantId==restaurantId){
+                            &&allOrders.Orders[i].restaurantId===restaurantId){
                             return allOrders.Orders[i];
                         }
                     }
                     var NewOrder= {
-                        OrderId: nextId,
-                        UserId: userId,
-                        RestaurantId: restaurantId,
+                        orderId: nextId,
+                        userId: userId,
+                        restaurantId: restaurantId,
                         itemsOrdered: [],
                         orderStatus:"makingCart"
                     };
                         nextId++;
                         allOrders.Orders.push(NewOrder);
+                    debugger;
                     return NewOrder;
                 });
                 return promise;
@@ -96,10 +98,10 @@ feedmeApp.factory('OrderService', ['$resource', '$http',
             addItemToOrder: function (orderId,itemId,itemName,itemPrice,comments,quantity) {
             var promise = $http.get('app/rest/account').then(function () {
                 for(var i =0; i<allOrders.Orders.length;i++){
-                    if(allOrders.Orders[i].OrderId==orderId) {
+                    if(allOrders.Orders[i].orderId===orderId) {
                         var containsItem = false;
                         for (var j = 0; j < allOrders.Orders[i].itemsOrdered.length; j++) {
-                            if (allOrders.Orders[i].itemsOrdered[j].itemId == itemId) {
+                            if (allOrders.Orders[i].itemsOrdered[j].itemId === itemId) {
                                 allOrders.Orders[i].itemsOrdered[j].quantity =
                                     parseInt(allOrders.Orders[i].itemsOrdered[j].quantity)+parseInt(quantity);
                                 if (comments != "")
@@ -128,7 +130,7 @@ feedmeApp.factory('OrderService', ['$resource', '$http',
             removeItemFromOrder: function (orderId,itemId) {
                 var promise = $http.get('app/rest/account').then(function () {
                     for(var i =0; i<allOrders.Orders.length;i++){
-                        if(allOrders.Orders[i].OrderId==orderId) {
+                        if(allOrders.Orders[i].orderId==orderId) {
                             for (var j = 0; j < allOrders.Orders[i].itemsOrdered.length; j++) {
                                 if (allOrders.Orders[i].itemsOrdered[j].itemId == itemId) {
                                     allOrders.Orders[i].itemsOrdered[j].quantity =

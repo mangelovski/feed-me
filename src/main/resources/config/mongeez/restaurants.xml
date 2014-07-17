@@ -4,7 +4,7 @@
 
             db.T_RESTAURANTS.insert(
             {
-            "restaurantId": "1",
+            "_id": "1",
            "name": "Staro Bure",
            "area": "1",
             "type": "National",
@@ -13,7 +13,7 @@
             });
             db.T_RESTAURANTS.insert(
             {
-            "restaurantId": "3",
+            "_id": "3",
             "name": "Enriko",
             "area": "1",
             "type": "Italian",
@@ -22,7 +22,7 @@
             });
             db.T_RESTAURANTS.insert(
             {
-            "restaurantId":"8",
+            "_id":"8",
             "name": "Gala Kujna1",
             "area": "1",
             "type": "Cantene",
@@ -31,7 +31,7 @@
             });
             db.T_RESTAURANTS.insert(
             {
-            "restaurantId":"4",
+            "_id":"4",
             "name": "Celik",
             "area": "2",
             "type": "National",
@@ -40,7 +40,7 @@
             });
             db.T_RESTAURANTS.insert(
             {
-            "restaurantId":"5",
+            "_id":"5",
             "name": "1001 night",
             "area": "3",
             "type": "Arabian",
@@ -49,7 +49,7 @@
             });
             db.T_RESTAURANTS.insert(
             {
-            "restaurantId":"7",
+            "_id":"7",
             "name": "Kostarika",
             "area": "2",
             "type": "Italian",
@@ -58,7 +58,7 @@
             });
             db.T_RESTAURANTS.insert(
             {
-            "restaurantId": "2",
+            "_id": "2",
             "name": "Veneto",
             "area": "1",
             "type": "Italian",
@@ -67,7 +67,7 @@
             });
             db.T_RESTAURANTS.insert(
             {
-            "restaurantId":"6",
+            "_id":"6",
             "name": "4 seasons",
             "area": "5",
             "type": "Unique",

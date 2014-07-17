@@ -19,6 +19,7 @@ import java.util.List;
 @Transactional
 public class RestaurantService {
 
+    //notused!!!!!
     private final Logger log = LoggerFactory.getLogger(RestaurantService.class);
 
     @Inject

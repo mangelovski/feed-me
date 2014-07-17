@@ -8,7 +8,7 @@ feedmeApp.controller('OrderController', ['$scope', 'RestaurantsService','StateSe
         $scope.showOrders = true;
         $scope.removeOne = function(item) {
 
-            OrderService.removeItemFromOrder($scope.order.OrderId,item.itemId).then(function(data){
+            OrderService.removeItemFromOrder($scope.order.orderId,item.itemId).then(function(data){
                 console.log(data);
             });
 
@@ -19,9 +19,9 @@ feedmeApp.controller('OrderController', ['$scope', 'RestaurantsService','StateSe
                 $scope.restaurant=data;
             });
             UserService.getCurrentUser().then(function(data){
-                OrderService.loadLastUncompletedOrderOrMakeNew(parseInt(data),$scope.selectedId).then(function(data){
+                OrderService.loadLastUncompletedOrderOrMakeNew(data,$scope.selectedId).then(function(data){
                     $scope.order=data;
-                    console.log(data.OrderId);
+                    console.log(data.orderId);
                 });
             });
         });

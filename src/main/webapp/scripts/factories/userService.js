@@ -4,14 +4,11 @@
 'use strict';
 feedmeApp.factory('UserService', ['$resource', '$http',
     function ($resource, $http) {
-        var currentUser = "1";
+        var currentUser = "user";
         return {
             getCurrentUser: function () {
                 var promise = $http.get('app/rest/account').then(function () {
-
-                    if(currentUser!=""){
-                    return currentUser;}
-                    return "1";
+                    return currentUser;
                 });
                 return promise;
             },
