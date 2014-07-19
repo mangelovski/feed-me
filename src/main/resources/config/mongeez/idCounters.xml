@@ -1,0 +1,27 @@
+<mongoChangeLog>
+    <changeSet changeId="ChangeSet-7" author="martin">
+        <script>
+            db.T_COUNTER.insert(
+            {
+                "_id" : "userNumber",
+            "value":"4"
+            });
+            db.T_COUNTER.insert(
+            {
+                "_id" : "orderNumber",
+            "value":"1"
+            });
+            db.T_COUNTER.insert(
+            {
+                "_id" : "restaurantNumber",
+            "value":"6"
+            });
+            db.T_COUNTER.insert(
+            {
+                "_id" : "menuNumber",
+            "value":"8"
+            });
+
+        </script>
+    </changeSet>
+</mongoChangeLog>

@@ -4,21 +4,21 @@
     <table class="table table-condensed table-striped table-bordered table-responsive">
         <thead>
         <tr>
-            <th ng-click="predicate = 'name'; reverse=!reverse">{{'order.table.header.name' | translate}}</th>
-            <th ng-click="predicate = 'price'; reverse=!reverse">{{'order.table.header.price' | translate}}</th>
+            <th data-ng-click="predicate = 'name'; reverse=!reverse">{{'order.table.header.name' | translate}}</th>
+            <th data-ng-click="predicate = 'price'; reverse=!reverse">{{'order.table.header.price' | translate}}</th>
             <th>{{'order.table.header.quantity' | translate}}</th>
             <th>{{'order.table.header.comments' | translate}}</th>
             <th>{{'order.table.header.remove' | translate}}</th>
         </tr>
         </thead>
 
-        <tr ng-repeat="item in order.itemsOrdered">
+        <tr data-ng-repeat="item in order.itemsOrdered">
             <td><span>{{item.name}}</span></td>
             <td>{{item.price}}</td>
-            <td><input type="text" class="input-sm form-control" ng-model="item.quantity" placeholder="{{item.quantity}}"></td>
-            <td><input type="text" class="input-sm form-control" ng-model="item.comments" placeholder="{{item.comments}}"></td>
-            <td class="glyphicon glyphicon-minus" ng-click="removeOne(item);"></td>
+            <td><input type="text" class="input-sm form-control" data-ng-model="item.quantity" placeholder="{{item.quantity}}"></td>
+            <td><input type="text" class="input-sm form-control" data-ng-model="item.comments" placeholder="{{item.comments}}"></td>
+            <td ><button class="glyphicon glyphicon-minus btn btn-primary" data-ng-click="removeOne(item);"></button></td>
         </tr>
     </table>
-    <button type="submit" class="btn btn-primary" translate="order.button" ng-click="createOrder();">Order!</button>
+    <button type="submit" class="btn btn-primary" translate="order.button" data-ng-click="createOrder();">SAVE ORDER!</button>
 </div>

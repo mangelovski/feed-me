@@ -9,16 +9,15 @@ feedmeApp.controller('MenuController', ['$scope','MenuService',
     function ($scope,MenuService,RestaurantsService,StateService,OrderService,UserService) {
         $scope.orderView=true;
         $scope.addToCart = function(item) {
-
             var quantity;
+
             if(item.quantity>0){
-                quantity=item.quantity;
+                quantity=parseInt(item.quantity);
             }else{
-                quantity=item.defaultValue;
+                quantity=1;
             }
 
            OrderService.addItemToOrder($scope.order.orderId,item.itemId,item.name,item.price,"",quantity).then(function(data){
-           console.log(data);
            });
 
         };

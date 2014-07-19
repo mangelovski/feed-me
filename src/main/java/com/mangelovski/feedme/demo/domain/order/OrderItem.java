@@ -1,4 +1,4 @@
-package com.mangelovski.feedme.demo.domain.menu;
+package com.mangelovski.feedme.demo.domain.order;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -11,7 +11,7 @@ import java.io.Serializable;
  * An item.
  */
 
-public class Item implements Serializable {
+public class OrderItem implements Serializable {
 
     @NotNull
     @Size(min = 0, max = 50)
@@ -27,9 +27,8 @@ public class Item implements Serializable {
     @Field("price")
     private String price;
 
-    @Size(min = 0, max = 50)
-    @Field("desc")
-    private String desc;
+    @Field("comments")
+    private String comments;
 
     @Size(min = 0, max = 50)
     @Field("quantity")
@@ -59,12 +58,12 @@ public class Item implements Serializable {
         this.price = price;
     }
 
-    public String getDesc() {
-        return desc;
+    public String getComments() {
+        return comments;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
+    public void setComments(String comments) {
+        this.comments = comments;
     }
 
     public String getQuantity() {
@@ -84,7 +83,7 @@ public class Item implements Serializable {
             return false;
         }
 
-        Item user = (Item) o;
+        OrderItem user = (OrderItem) o;
 
         if (!itemId.equals(user.itemId)) {
             return false;
@@ -104,7 +103,7 @@ public class Item implements Serializable {
                 "itemId='" + itemId + '\'' +
                 ", name='" + name + '\'' +
                 ", price='" + price + '\'' +
-                ", description='" + desc + '\'' +
+                ", comments='" + comments + '\'' +
                 ", quantity='" + quantity + '\'' +
                 "}";
     }

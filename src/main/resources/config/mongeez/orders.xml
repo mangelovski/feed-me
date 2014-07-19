@@ -1,0 +1,63 @@
+<mongoChangeLog>
+    <changeSet changeId="ChangeSet-6" author="martin">
+        <script>
+
+            db.T_ORDERS.insert(
+            {
+            "_id":"1",
+            "userId": "1",
+            "restaurantId":"1",
+            "itemsOrdered": [
+
+            {
+            "_id": "1",
+            "name": "Topeno Sirenje",
+            "price": "150",
+            "quantity":"3",
+            "comments":""
+            },
+            {
+            "_id": "4",
+            "name": "Pileski prsti",
+            "price": "250",
+            "quantity":"1",
+            "comments":""
+            },
+            {
+            "_id": "6",
+            "name": "Shopska",
+            "price": "200",
+            "quantity":"2",
+            "comments":"no onions"
+            },
+            {
+            "_id": "9",
+            "name": "Kebapce",
+            "price": "15",
+            "quantity":"10",
+            "comments":"with onions"
+            },
+            {
+            "_id": "12",
+            "name": "Uvijac",
+            "price": "180",
+            "quantity":"1",
+            "comments":""
+            },
+            {
+            "_id": "16",
+            "name": "Sladoled topce",
+            "price": "15",
+            "quantity":"3",
+            "comments":""
+            }
+            ],
+            "orderStatus":"makingCart"
+            });
+
+
+
+            
+        </script>
+    </changeSet>
+</mongoChangeLog>

@@ -9,21 +9,25 @@ feedmeApp.controller('OrderController', ['$scope', 'RestaurantsService','StateSe
         $scope.removeOne = function(item) {
 
             OrderService.removeItemFromOrder($scope.order.orderId,item.itemId).then(function(data){
-                console.log(data);
             });
 
         };
-        StateService.getSelectedRestaurant().then(function(data){
-            $scope.selectedId=data;
-            RestaurantsService.loadRestaurantById($scope.selectedId).then(function(data){
-                $scope.restaurant=data;
-            });
-            UserService.getCurrentUser().then(function(data){
-                OrderService.loadLastUncompletedOrderOrMakeNew(data,$scope.selectedId).then(function(data){
-                    $scope.order=data;
-                    console.log(data.orderId);
+        $scope.createOrder=function(){
+            OrderService.saveOrderToServer();
+        };
+        var refreshOrder=function(){
+            StateService.getSelectedRestaurant().then(function(data){
+                $scope.selectedId=data;
+                RestaurantsService.loadRestaurantById($scope.selectedId).then(function(data){
+                    $scope.restaurant=data;
+                });
+                UserService.getCurrentUser().then(function(data){
+                    OrderService.loadLastUncompletedOrderOrMakeNew(data,$scope.selectedId).then(function(data){
+                        $scope.order=data;
+                    });
                 });
             });
-        });
+        };
+        refreshOrder();
     }]);
 

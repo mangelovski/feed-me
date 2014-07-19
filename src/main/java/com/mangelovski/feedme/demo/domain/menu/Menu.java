@@ -1,8 +1,6 @@
 package com.mangelovski.feedme.demo.domain.menu;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
@@ -13,7 +11,7 @@ import java.io.Serializable;
 import java.util.Set;
 
 /**
- * A restaurant.
+ * A menu.
  */
 
 @Document(collection = "T_MENIES")
@@ -32,8 +30,6 @@ public class Menu implements Serializable {
     @Field("restaurantId")
     private String restaurantId;
 
-
-    @DBRef
     private Set<Category> availableCategories;
 
     public String getRestaurantId() {

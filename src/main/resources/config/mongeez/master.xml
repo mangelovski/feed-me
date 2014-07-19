@@ -3,4 +3,6 @@
     <file path="users.xml"/>
     <file path="restaurants.xml"/>
     <file path="menies.xml"/>
+    <file path="orders.xml"/>
+    <file path="idCounters.xml"/>
 </changeFiles>
