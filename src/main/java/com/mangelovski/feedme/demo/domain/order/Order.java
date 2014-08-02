@@ -16,6 +16,8 @@ import java.util.List;
 @Document(collection = "T_ORDERS")
 public class Order implements Serializable {
 
+    //FIXME MAE: check the implementation of the timestamp!
+
     @NotNull
     @Size(min = 0, max = 50)
     @Id
@@ -33,8 +35,43 @@ public class Order implements Serializable {
     @Field("restaurantId")
     private String restaurantId;
 
+    @Size(min = 0, max = 50)
+    @Field("timestampOrdered")
+    private String timestampOrdered;
+
+    @Size(min = 0, max = 50)
+    @Field("timestampCreated")
+    private String timestampCreated;
+
+    @Size(min = 0, max = 50)
+    @Field("totalPrice")
+    private String totalPrice;
 
     private List<OrderItem> itemsOrdered;
+
+    public String getTimestampOrdered() {
+        return timestampOrdered;
+    }
+
+    public void setTimestampOrdered(String timestampOrdered) {
+        this.timestampOrdered = timestampOrdered;
+    }
+
+    public String getTimestampCreated() {
+        return timestampCreated;
+    }
+
+    public void setTimestampCreated(String timestampCreated) {
+        this.timestampCreated = timestampCreated;
+    }
+
+    public String getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(String totalPrice) {
+        this.totalPrice = totalPrice;
+    }
 
     public String getRestaurantId() {
         return restaurantId;

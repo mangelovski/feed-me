@@ -3,8 +3,8 @@
  * Created by Martin on 6/19/2014.
  */
 
-feedmeApp.controller('OrderController', ['$scope', 'RestaurantsService','StateService','OrderService','UserService',
-    function ($scope, RestaurantsService, StateService,OrderService, UserService ) {
+feedmeApp.controller('OrderController', ['$scope','$state', 'RestaurantsService','StateService','OrderService','UserService',
+    function ($scope,$state, RestaurantsService, StateService,OrderService, UserService ) {
         $scope.showOrders = true;
         $scope.removeOne = function(item) {
 
@@ -13,6 +13,12 @@ feedmeApp.controller('OrderController', ['$scope', 'RestaurantsService','StateSe
 
         };
         $scope.createOrder=function(){
+            OrderService.createOrder().then(function(){
+                $state.go('checkout');
+
+            });
+        };
+        $scope.saveOrder=function(){
             OrderService.saveOrderToServer();
         };
         var refreshOrder=function(){

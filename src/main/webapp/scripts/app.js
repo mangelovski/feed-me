@@ -5,7 +5,7 @@
 /* App Module */
 
 var feedmeApp = angular.module('feedmeApp', ['http-auth-interceptor', 'tmh.dynamicLocale','ui.router',
-    'ngResource', 'ngCookies', 'feedmeAppUtils', 'pascalprecht.translate', 'truncate','ui.select2']);
+    'ngResource', 'ngCookies', 'feedmeAppUtils', 'pascalprecht.translate', 'truncate','ui.select2','ui.bootstrap']);
 
 feedmeApp
     .config(['$stateProvider', '$urlRouterProvider', '$translateProvider',  'tmhDynamicLocaleProvider', 'USER_ROLES',
@@ -57,6 +57,14 @@ feedmeApp
                     views: {
                         "mainView": {
                             templateUrl: 'views/error.html',
+                            controller: function($rootScope,$scope){
+
+                                $scope.additionalErrorInfo=$rootScope.additionalErrorInfo;
+                                $scope.errorMessage=$rootScope.errorMessage;
+                                $rootScope.errorMessage="";
+                                $rootScope.additionalErrorInfo="";
+
+                            },
                             access: {
                                 authorizedRoles: [USER_ROLES.all]
                             }
@@ -77,7 +85,7 @@ feedmeApp
                             templateUrl: 'views/settings.html',
                             controller: 'SettingsController',
                             access: {
-                                authorizedRoles: [USER_ROLES.all]
+                                authorizedRoles: [USER_ROLES.admin,USER_ROLES.operator,USER_ROLES.user]
                             }
                         },
                         "orderView": {
@@ -96,7 +104,25 @@ feedmeApp
                             templateUrl: 'views/restaurants.html',
                             controller: 'RestaurantsController',
                             access: {
-                                authorizedRoles: [USER_ROLES.all]
+                                authorizedRoles: [USER_ROLES.admin,USER_ROLES.operator,USER_ROLES.user]
+                            }
+                        },
+                        "orderView": {
+                            controller: function ($scope) {
+                                $scope.showOrders = false;  //*** Exists! ***//
+                            },
+                            template:"orders"
+                        }
+                    }
+
+                }).state('checkout', {
+                    url: '/checkout',
+                    views: {
+                        "mainView": {
+                            templateUrl: 'views/checkout.html',
+                            controller: 'CheckoutController',
+                            access: {
+                                authorizedRoles: [USER_ROLES.admin,USER_ROLES.operator,USER_ROLES.user]
                             }
                         },
                         "orderView": {
@@ -114,7 +140,7 @@ feedmeApp
                             templateUrl: 'views/menu.html',
                             controller: 'MenuController',
                             access: {
-                                authorizedRoles: [USER_ROLES.all]
+                                authorizedRoles: [USER_ROLES.admin,USER_ROLES.operator,USER_ROLES.user]
                             }
                         },
                         "orderView": {
@@ -131,7 +157,7 @@ feedmeApp
                             templateUrl: 'views/password.html',
                             controller: 'PasswordController',
                             access: {
-                                authorizedRoles: [USER_ROLES.all]
+                                authorizedRoles: [USER_ROLES.admin,USER_ROLES.operator,USER_ROLES.user]
                             }
                         },
                         "orderView": {
@@ -154,7 +180,7 @@ feedmeApp
                                     return Sessions.get();
                                 }],
                                 access: {
-                                    authorizedRoles: [USER_ROLES.all]
+                                    authorizedRoles: [USER_ROLES.admin,USER_ROLES.operator,USER_ROLES.user]
                                 }
                         },
                         "orderView": {

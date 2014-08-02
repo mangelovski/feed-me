@@ -20,6 +20,10 @@
             <td ><button class="glyphicon glyphicon-minus btn btn-primary" data-ng-click="removeOne(item);"></button></td>
         </tr>
     </table>
+    <div class="right text-right text-info">Food Price: {{totalPrice().sum}}</div>
+    <div class="right text-right text-info">Payed Distance: {{totalPrice().distance}}</div>
+    <div class="right text-right text-info">Distance Price: {{totalPrice().distancePrice}}</div>
+    <div class="right text-right text-info">Total Price: {{totalPrice().totalSum}}</div>
     <button type="submit" class="btn btn-primary" translate="order.button.save" data-ng-click="saveOrder();">SAVE ORDER!</button>
-    <button type="submit" class="btn btn-primary" translate="order.button.finish" data-ng-click="createOrder();">SAVE ORDER!</button>
+    <button type="submit" class="btn btn-primary" translate="order.button.finish" data-ng-click="createOrder();">ORDER!</button>
 </div>

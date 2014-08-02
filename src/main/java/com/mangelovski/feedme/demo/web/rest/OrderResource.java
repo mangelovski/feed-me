@@ -13,6 +13,7 @@ import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
+import java.util.logging.Level;
 
 /**
  * REST controller for managing users.
@@ -61,7 +62,7 @@ public class OrderResource {
     }
 
     /**
-     * GET  /rest/restaurants/:restaurantId -> get the restaurant with the restaurant id.
+     * GET  /rest/getLastOrderOrCrateNew -> get the last unfinished order with the restaurant and user id.
      */
     @RequestMapping(value = "/rest/getLastOrderOrCrateNew",
             method = RequestMethod.GET,
@@ -78,4 +79,69 @@ public class OrderResource {
         return order;
     }
 
+    /**
+     * GET  /rest/getOrdersByStatus -> get the orders last unfinished order with the restaurant and user id.
+     */
+    @RequestMapping(value = "/rest/getOrdersByStatusAndIds",
+            method = RequestMethod.GET,
+            produces = "application/json")
+    @Timed
+    public List<Order> getOrdersByStatus(
+            @RequestParam(value = "restaurantId") String restaurantId,
+            @RequestParam(value = "userId") String userId,
+            @RequestParam(value = "orderStatus") String orderStatus,
+            HttpServletResponse response) {
+        List<Order> orders = orderService.getOrdersByRestaurantIdClientIdandOrderStatus(restaurantId, userId, orderStatus);
+        if (orders == null||orders.size()<1) {
+            response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+        }
+        return orders;
+    }
+
+    /**
+     * GET  /rest/cleanOrdersByStatusAndIds -> clean the orders last unfinished order with the restaurant and user id.
+     * removes the older orders
+     */
+    @RequestMapping(value = "/rest/cleanOrdersByStatusAndIds",
+            method = RequestMethod.GET,
+            produces = "application/json")
+    @Timed String cleanOrdersByStatusAndIds(
+            @RequestParam(value = "restaurantId") String restaurantId,
+            @RequestParam(value = "userId") String userId,
+            @RequestParam(value = "orderStatus") String orderStatus,
+            HttpServletResponse response) {
+        int numberOfRemovedOrders=0;
+        List<Order> orders = orderService.getOrdersByRestaurantIdClientIdandOrderStatus(restaurantId, userId, orderStatus);
+        if (orders.size()>1) {
+          String idNotToDelete=findNewestOrderId(orders);
+          for(Order o : orders){
+              if(o.getOrderId()!=idNotToDelete){
+                  o.setOrderStatus("toBeDeleted");
+                  orderService.updateOrder(o);
+                  numberOfRemovedOrders++;
+              }
+
+          }
+        }
+        return "Removed "+numberOfRemovedOrders+" orders.";
+    }
+
+    private String findNewestOrderId(List<Order> orders) {
+        long time=0;
+        String id="";
+        for(Order o : orders){
+            try {
+                if (Long.parseLong(o.getTimestampCreated()) > time) {
+                    id = o.getOrderId();
+                    time = Long.parseLong(o.getTimestampCreated());
+                }
+            }catch (Exception e)
+            {
+                java.util.logging.Logger.getAnonymousLogger().log(Level.SEVERE,e.getLocalizedMessage());
+            }
+        }
+        return id;
+    }
+
 }
+

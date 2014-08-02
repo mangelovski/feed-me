@@ -25,6 +25,23 @@ feedmeApp.factory('OrderService', ['$resource', '$http',
                     return currentOrder;
                 });
             },
+            loadOrdersByUserRestaurantAndStatus: function (userId,restaurantId,status) {
+                return $http.get('app/rest/getOrdersByStatusAndIds',
+                    {params: {restaurantId: restaurantId,userId:userId,orderStatus:status}})
+                    .then(function (response) {
+                        currentOrder=response.data[0];
+
+                        return response.data;
+                    });
+            },
+            cleanDuplicateOrdersByUserRestaurantAndStatus: function (userId,restaurantId,status) {
+                return $http.get('app/rest/cleanOrdersByStatusAndIds',
+                    {params: {restaurantId: restaurantId,userId:userId,orderStatus:status}})
+                    .then(function (response) {
+                        console.log(response.data);
+                        return response.data;
+                    });
+            },
             addItemToOrder: function (orderId,itemId,itemName,itemPrice,comments,quantity) {
              return $http.get('app/rest/account').then(function () {
                         var containsItem = false;
@@ -55,6 +72,7 @@ feedmeApp.factory('OrderService', ['$resource', '$http',
                 return $http.get('app/rest/account').then(function () {
                         if(currentOrder.orderId==orderId) {
                             for (var j = 0; j < currentOrder.itemsOrdered.length; j++) {
+
                                 if (currentOrder.itemsOrdered[j].itemId == itemId) {
                                     currentOrder.itemsOrdered[j].quantity =
                                         parseInt(currentOrder.itemsOrdered[j].quantity)-1;
@@ -70,6 +88,20 @@ feedmeApp.factory('OrderService', ['$resource', '$http',
                 });
             },
             saveOrderToServer: function () {
+                return $http.put('app/rest/updateOrder',currentOrder).then(function (response) {
+
+                    return response.data;
+                });
+            },
+            createOrder: function () {
+                currentOrder.orderStatus="onCheckout";
+                return $http.put('app/rest/updateOrder',currentOrder).then(function (response) {
+
+                    return response.data;
+                });
+            },
+            finishOrdering: function () {
+                currentOrder.orderStatus="ordered";
                 return $http.put('app/rest/updateOrder',currentOrder).then(function (response) {
 
                     return response.data;

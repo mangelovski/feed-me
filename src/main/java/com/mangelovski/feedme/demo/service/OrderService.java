@@ -15,7 +15,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Service class for managing users.
+ * Service class for managing orders.
  */
 @Service
 public class OrderService {
@@ -39,6 +39,8 @@ public class OrderService {
         newOrder.setOrderStatus("makingCart");
         newOrder.setRestaurantId(restaurantId);
         newOrder.setUserId(userId);
+        newOrder.setTimestampCreated(String.valueOf(System.currentTimeMillis()));
+        newOrder.setTotalPrice("");
         orderRepository.save(newOrder);
         idCounterRepository.save(orderCounter);
 
@@ -51,6 +53,10 @@ public class OrderService {
     @Transactional("order")
     public void updateOrder(Order o) {
 
+        if(o.getOrderStatus().equals("onCheckout")){
+            //update the timestamp if the order is onCheckout
+            o.setTimestampOrdered(String.valueOf(System.currentTimeMillis()));
+        }
         orderRepository.save(o);
 
         log.debug("Updated Order with id {}", o.getOrderId());
@@ -59,6 +65,12 @@ public class OrderService {
     @Transactional(readOnly = true)
     public List<Order> getAllOrders() {
         List<Order> orders = orderRepository.findAll();
+        return orders;
+    }
+
+    @Transactional(readOnly = true)
+    public List<Order> getOrdersByRestaurantIdClientIdandOrderStatus(String restaurantId,String userId,String orderStatus) {
+        List<Order> orders = orderRepository.findByRestaurantIdAndUserIdAndOrderStatus(restaurantId, userId, orderStatus);
         return orders;
     }
     @Transactional(readOnly = true)
