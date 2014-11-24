@@ -37,7 +37,7 @@
         </tr>
         </thead>
 
-        <tr ng-repeat="restaurant in restourants| filter:filterName | orderBy:predicate:reverse" ng-click="setRestaurant();">
+        <tr ng-repeat="restaurant in restourants| filter:filterName | orderBy:predicate:reverse" ng-click="setRestaurant();" >
             <td><span>{{restaurant.name}}</span></td>
             <td><small>{{restaurant.area}}</small></td>
             <td>{{restaurant.type}}</td>

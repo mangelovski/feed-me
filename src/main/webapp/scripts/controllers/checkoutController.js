@@ -8,7 +8,6 @@ feedmeApp.controller('CheckoutController', ['$rootScope','$scope','$state', 'Res
     function ($rootScope,$scope,$state, RestaurantsService, StateService,OrderService, UserService, AreaService ) {
         $scope.showOrders = false;
         $scope.totalPrice = function(){
-            debugger;
             if($scope.order!==undefined) {
                 var sum = 0;
                 for (var i = 0; i < $scope.order.itemsOrdered.length; i++) {
@@ -36,16 +35,17 @@ feedmeApp.controller('CheckoutController', ['$rootScope','$scope','$state', 'Res
 
         };
         $scope.saveOrder = function() {
-            OrderService.saveOrderToServer().then(function(data){
+            OrderService.saveOrderToServer($scope.order).then(function(data){
                 console.log(data);
             });
         };
         $scope.createOrder = function() {
 
-            /*OrderService.finishOrder().then(function(data){
+            $scope.order.totalPrice=$scope.totalPrice().totalSum;
+            OrderService.finishOrdering($scope.order).then(function(data){
                 console.log(data);
-                //redirect to myOrders
-            });*/
+                $state.go('myOrders');
+            });
         };
         var refreshOrder=function(){
             StateService.getSelectedRestaurant().then(function(data){
@@ -61,8 +61,8 @@ feedmeApp.controller('CheckoutController', ['$rootScope','$scope','$state', 'Res
                             if(data.length==1){
                         $scope.order=data[0];}
                             else if(data.length<1){
-                                $rootScope.additionalErrorInfo="please contact the administrator";
-                                $rootScope.errorMessage="cannot find the order";
+                                $rootScope.additionalErrorInfo="errors.contactAdmin";
+                                $rootScope.errorMessage="errors.orderNotFound";
                                 $state.go('error');
                             }
                             else if(data.length>1){

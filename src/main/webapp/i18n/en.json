@@ -6,6 +6,8 @@
             "home": "Home",
             "account": {
                 "main": "Account",
+                "orders": "My Orders",
+                "manageOrders": "Manage Orders",
                 "settings": "Settings",
                 "password": "Password",
                 "sessions": "Sessions",
@@ -265,7 +267,10 @@
     },
     "errors": {
         "title": "Error page!",
-        "403": "You are not authorized to access the page."
+        "403": "You are not authorized to access the page.",
+        "orderNotFound":"Cannot find the order, please try again",
+        "contactAdmin":"If the problem happens again, please contact the admin",
+        "loggedOut":"You might be logged out, please login again"
     },
     "footer": "The application that keeps you fed",
     "restaurants": {
@@ -313,6 +318,21 @@
             "save":" Save Order",
             "finish":"Checkout"
 
+        },
+        "table": {
+            "header": {
+                "name": "name",
+                "price": "price",
+                "quantity": "quantity",
+                "comments": "comments",
+                "remove": "remove"
+            }
+        }
+    },
+    "myOrder": {
+        "title": "My orders",
+        "button":{
+            "view":"View Order"
         },
         "table": {
             "header": {

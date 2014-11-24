@@ -62,6 +62,20 @@ public class OrderResource {
     }
 
     /**
+     * GET  /rest/getAllOrdersByUserId -> get the orders with the userId;
+     */
+    @RequestMapping(value = "/rest/getAllOrdersByUserId",
+            method = RequestMethod.GET,
+            produces = "application/json")
+    @Timed
+    public List<Order> getAllOrdersByUserId(
+            @RequestParam(value = "userId") String userId,
+            HttpServletResponse response) {
+
+        return orderService.getOrdersByUserId(userId);
+    }
+
+    /**
      * GET  /rest/getLastOrderOrCrateNew -> get the last unfinished order with the restaurant and user id.
      */
     @RequestMapping(value = "/rest/getLastOrderOrCrateNew",

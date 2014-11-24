@@ -1,0 +1,44 @@
+1.Admin restaurant page
+-upload menu(make parser)
+-upload pictures
+-add/edit restaurant
+
+2.Order admin page
+-
+
+
+2.5 Image carrousel
+
+3.Track current order
+
+
+4.tabs/paging on menu page
+
+6.order button press->submit order page.
+
+8.generate daily order reports
+-per restaurant
+-per scooter
+-per area/between areas
+
+9.food carrousel
+
+11.log in with facebook
+12.create user
+12. send sms and mails
+13. SESSIONS IS NOT WORKING 
+operator:
+14. turn off items in restaurants
+15. put order back to ordering, edit some order!
+
+
+100.ng-animate
+101.refactor translations.
+
+TIP: Use iterators not list<> for large lists, memmory issue
+
+
+upsert
+JSON.parse for the restaurants!
+
+

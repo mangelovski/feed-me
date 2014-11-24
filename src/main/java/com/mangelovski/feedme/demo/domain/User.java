@@ -42,6 +42,15 @@ public class User implements Serializable {
     @Field("userId")
     private String userId;
 
+    @Field("facebookLogin")
+    private String facebookLogin;
+
+    @Field("lastKnownPhone")
+    private String lastKnownPhone;
+
+    @Field("lastKnownAddress")
+    private String lastKnownAddress;
+
     @JsonIgnore
     private Set<Authority> authorities;
 
@@ -91,6 +100,30 @@ public class User implements Serializable {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getFacebookLogin() {
+        return facebookLogin;
+    }
+
+    public void setFacebookLogin(String facebookLogin) {
+        this.facebookLogin = facebookLogin;
+    }
+
+    public String getLastKnownPhone() {
+        return lastKnownPhone;
+    }
+
+    public void setLastKnownPhone(String lastKnownPhone) {
+        this.lastKnownPhone = lastKnownPhone;
+    }
+
+    public String getLastKnownAddress() {
+        return lastKnownAddress;
+    }
+
+    public void setLastKnownAddress(String lastKnownAddress) {
+        this.lastKnownAddress = lastKnownAddress;
     }
 
     public Set<Authority> getAuthorities() {

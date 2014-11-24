@@ -7,13 +7,9 @@ feedmeApp.factory('OrderService', ['$resource', '$http',
         var currentOrder="";
 
         return {
-            loadOrderById: function (orderId) {
-                return $http.get('app/rest/account').then(function () {
-                    for(var i =0; i<allOrders.Orders.length;i++){
-                        if(allOrders.Orders[i].orderId==orderId){
-                            return allOrders.Orders[i];
-                        }
-                    }
+            getAllOrdersByUserId: function (userId) {
+                return $http.get('app/rest/getAllOrdersByUserId',{params: {userId: userId}}).then(function (response) {
+                    return response.data;
                 });
                 return promise;
             },
@@ -87,7 +83,8 @@ feedmeApp.factory('OrderService', ['$resource', '$http',
                     return false;
                 });
             },
-            saveOrderToServer: function () {
+            saveOrderToServer: function (order) {
+                currentOrder=order;
                 return $http.put('app/rest/updateOrder',currentOrder).then(function (response) {
 
                     return response.data;
@@ -100,7 +97,8 @@ feedmeApp.factory('OrderService', ['$resource', '$http',
                     return response.data;
                 });
             },
-            finishOrdering: function () {
+            finishOrdering: function (order) {
+                currentOrder=order;
                 currentOrder.orderStatus="ordered";
                 return $http.put('app/rest/updateOrder',currentOrder).then(function (response) {
 

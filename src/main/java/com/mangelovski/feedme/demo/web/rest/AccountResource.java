@@ -76,7 +76,10 @@ public class AccountResource {
                 user.getLastName(),
                 user.getEmail(),
                 user.getUserId(),
-                roles),
+                roles,
+                    "",
+                    "",
+                    ""),
             HttpStatus.OK);
     }
 

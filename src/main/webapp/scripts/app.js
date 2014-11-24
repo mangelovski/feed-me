@@ -133,6 +133,24 @@ feedmeApp
                         }
                     }
 
+                }).state('myOrders', {
+                    url: '/myOrders',
+                    views: {
+                        "mainView": {
+                            templateUrl: 'views/myOrders.html',
+                            controller: 'MyOrdersController',
+                            access: {
+                                authorizedRoles: [USER_ROLES.admin,USER_ROLES.operator,USER_ROLES.user]
+                            }
+                        },
+                        "orderView": {
+                            controller: function ($scope) {
+                                $scope.showOrders = false;  //*** Exists! ***//
+                            },
+                            template:"orders"
+                        }
+                    }
+
                 }).state('restaurant', {
                     url: '/restaurant',
                     views: {
@@ -311,9 +329,21 @@ feedmeApp
         .run(['$rootScope', '$state', '$http', 'AuthenticationSharedService', 'Session', 'USER_ROLES',
             function($rootScope, $state, $http, AuthenticationSharedService, Session, USER_ROLES) {
                 $rootScope.$on('$stateChangeStart', function (event, next) {
+                    //debugger;
                     $rootScope.isAuthorized = AuthenticationSharedService.isAuthorized;
                     $rootScope.userRoles = USER_ROLES;
                     AuthenticationSharedService.valid(next.views.mainView.access.authorizedRoles);
+                    if(next.views.mainView.access!=null && next.views.mainView.access.authorizedRoles.lastIndexOf("*")>-1){
+                        //view for *
+                    } else{
+                        //protected view
+                        if(!$rootScope.isAuthorized(next.views.mainView.access.authorizedRoles)){
+                            event.preventDefault();
+                            $rootScope.$broadcast("event:auth-notAuthorized");
+                        }
+
+                    }
+
                 });
 
                 // Call when the the client is confirmed
@@ -334,11 +364,12 @@ feedmeApp
                 // Call when the 403 response is returned by the server
                 $rootScope.$on('event:auth-notAuthorized', function() {
                     $rootScope.errorMessage = 'errors.403';
+                    $rootScope.additionalErrorInfo = 'errors.loggedOut';
                     $state.go('error');
                 });
 
                 // Call when the user logs out
                 $rootScope.$on('event:auth-loginCancelled', function() {
-                    $state.go('');
+                    $state.go('main');
                 });
         }]);

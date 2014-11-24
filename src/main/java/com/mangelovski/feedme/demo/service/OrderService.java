@@ -69,6 +69,12 @@ public class OrderService {
     }
 
     @Transactional(readOnly = true)
+    public List<Order> getOrdersByUserId(String userId) {
+        List<Order> orders = orderRepository.findByUserId(userId);
+        return orders;
+    }
+
+    @Transactional(readOnly = true)
     public List<Order> getOrdersByRestaurantIdClientIdandOrderStatus(String restaurantId,String userId,String orderStatus) {
         List<Order> orders = orderRepository.findByRestaurantIdAndUserIdAndOrderStatus(restaurantId, userId, orderStatus);
         return orders;

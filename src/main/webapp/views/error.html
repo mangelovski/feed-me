@@ -6,14 +6,18 @@
         <div class="col-md-8">
             <h1 translate="errors.title">Error Page!</h1>
 
-            <div ng-switch="authenticated" ng-show="errorMessage">
-                <div class="alert alert-success" ng-switch-when="true"
+            <div ng-show="errorMessage">
+                <div class="alert alert-success"
                      translate="{{errorMessage}}" translate-values="{username: '{{account.login}}'}">
                     You are logged in as user "Admin".
                 </div>
             </div>
-            <div>{{additionalErrorInfo}}</div>
-
+            <div ng-switch="authenticated" ng-show="additionalErrorInfo">
+                <div class="alert alert-success"
+                     translate="{{additionalErrorInfo}}" translate-values="{username: '{{account.login}}'}">
+                    You are logged in as user "Admin".
+                </div>
+            </div>
         </div>
     </div>
 </div>

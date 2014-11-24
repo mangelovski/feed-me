@@ -58,6 +58,8 @@
                                 </span>
                             </a>
                             <ul class="dropdown-menu" ng-controller="MenuController">
+                                <li ng-switch-when="true"><a href="#/myOrders"><span class="glyphicon glyphicon-shopping-cart"></span>
+                                    &nbsp;<span translate="global.menu.account.orders">My Orders</span></a></li>
                                 <li ng-switch-when="true"><a href="#/settings"><span class="glyphicon glyphicon-wrench"></span>
                                     &nbsp;<span translate="global.menu.account.settings">Settings</span></a></li>
                                 <li ng-switch-when="true"><a href="#/password"><span class="glyphicon glyphicon-lock"></span>
@@ -115,8 +117,8 @@
             </div>
         </nav>
         <div class="container">
-            <div class="well" ng-class="{'col-md-8': orderView}" data-ui-view="mainView"></div>
-            <div class="well col-md-4" data-ui-view="orderView" ng-show="showOrders"></div>
+            <div class="well" data-ng-class="{'col-md-8': orderView}" data-ui-view="mainView" data-ng-animate="'animate'"></div>
+            <div class="well col-md-4" data-ui-view="orderView" data-ng-show="showOrders"></div>
             <div class="development"></div>
         </div>
         <div class="container footer">
@@ -147,7 +149,7 @@
         <script src="bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
         <script src="bower_components/angular-dynamic-locale/src/tmhDinamicLocale.js"></script>
         <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
-        <script src="bower_components/angular-bootstrap/ui-bootstrap.js"></script>
+        <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
         <script src="scripts/http-auth-interceptor.js"></script>
         <script src="scripts/filters/truncate.js"></script>
         <script src="scripts/utils.js"></script>
@@ -169,6 +171,7 @@
         <script src="scripts/controllers/menuController.js"></script>
         <script src="scripts/controllers/orderController.js"></script>
         <script src="scripts/controllers/checkoutController.js"></script>
+        <script src="scripts/controllers/myOrdersController.js"></script>
 
 
 
